@@ -8,6 +8,5 @@ export default props => (
             <a className="p-2 text-dark" href="/todo">Todo</a>
             <a className="p-2 text-dark" href="/sobre">Sobre</a>
         </nav>
-        <a className="btn btn-outline-primary" href="/login">Login</a>
     </div>
 )

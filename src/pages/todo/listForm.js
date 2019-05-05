@@ -1,8 +1,47 @@
 import React from 'react'
 
-export default props => (
-    <tr>
-        <td>aaaaaaaa</td>
-        <td>12312313123</td>
-    </tr>
-)
+export default props => {
+
+    const renderRows = () => {
+
+        const list = props.list || []
+
+        return list.map(todo => {
+
+            return (
+                <tr key={todo.id}>
+                    <td>
+                        {todo.done ?
+                            <del>
+                                {todo.description}
+                            </del> : todo.description}
+                    </td>
+                    <td>
+                        <div className="btn-group " role="group" aria-label="Basic example">
+
+                            {   !todo.done ?
+                                <button onClick={() => props.handleCheck(todo)}
+                                        className="btn btn-success "><i className="fa fa-check"></i></button>
+                                :
+                                <div>
+                                    <button hide="true" onClick={() => props.handleUnCheck(todo)}
+                                            className="btn btn-info"><i className="fa fa-undo"></i></button>
+
+                                    <button hide="true" onClick={() => props.handleRemove(todo)}  type="button" className="btn btn-danger"><i
+                                    className="fa fa-remove"></i></button>
+                                </div>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            )
+        })
+
+    }
+
+    return (
+        renderRows()
+    )
+
+}
+
