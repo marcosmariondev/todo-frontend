@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import Api from '../../main/Api';
 
+import 'bootstrap/dist/css/bootstrap.css';
+import 'font-awesome/css/font-awesome.css'
+
 import Header from '../../templates/header'
 
 import SearchForm from './searchForm'
