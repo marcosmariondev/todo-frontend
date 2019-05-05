@@ -10,7 +10,7 @@ export default class todo extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {description: '', list: []}
+        this.state = {description: '', list: [], validationError: '' }
 
         this.handleChange = this.handleChange.bind(this)
         this.handleAdd = this.handleAdd.bind(this)
@@ -28,28 +28,36 @@ export default class todo extends Component {
 
         Api.get(`/todos?term=${value_default}`)
             .then(res => {
-                this.setState({ description: value_default,  list: res.data.data });
+                this.setState({description: value_default, validationError: '',  list: res.data.data});
             })
     }
 
     handleChange(e) {
         const val = e.target.value
-        this.setState({ ...this.state, description: val})
+        this.setState({...this.state, description: val})
     }
 
     handleCheck(todo) {
-        Api.put(`/todos/${todo.id}`, { ...todo, done:true})
+        Api.put(`/todos/${todo.id}`, {...todo, done: true})
             .then(res => this.refresh(this.state.description))
     }
 
     handleUnCheck(todo) {
-        Api.put(`/todos/${todo.id}`, { ...todo, done:false})
+        Api.put(`/todos/${todo.id}`, {...todo, done: false})
             .then(res => this.refresh(this.state.description))
     }
 
     handleAdd() {
         Api.post('/todos', {description: this.state.description})
-            .then(res => this.refresh(this.state.description))
+            .then(res => this.refresh())
+            .catch(error => {
+                let err = ""
+                Object.entries(error.response.data.data).forEach(([key, value]) => {
+                    err += value[0];
+                });
+                this.setState({...this.state, validationError: err});
+            })
+
     }
 
     handleRemove = (todo) => {
@@ -61,7 +69,7 @@ export default class todo extends Component {
 
         Api.get(`/todos?term=${this.state.description}`)
             .then(res => {
-                this.setState({ ...this.state,  list: res.data.data });
+                this.setState({...this.state, list: res.data.data});
             })
     }
 
@@ -82,15 +90,18 @@ export default class todo extends Component {
                                     handleChange={this.handleChange}
                                     refresh={this.refresh}
                                     handleSearch={this.handleSearch}
-                                    description={this.state.description}/>
+                                    description={this.state.description}
+                                    validationError={this.state.validationError}
+                        />
 
                         <div className="col-12 mt-4">
                             <table className="table table-bordered">
                                 <thead>
-                                    <tr>
-                                        <th>Descrição</th>
-                                        <th width="130px">Ações</th>
-                                    </tr>
+                                <tr>
+                                    <th>Descrição</th>
+                                    <th></th>
+                                    <th width="130px">Ações</th>
+                                </tr>
                                 </thead>
 
                                 <tbody>

@@ -1,4 +1,5 @@
 import React from 'react'
+import Moment from 'react-moment';
 
 export default props => {
 
@@ -19,6 +20,8 @@ export default props => {
                                 {todo.description}
                             </del> : todo.description}
                     </td>
+
+                    <td> <Moment format="DD/MM/YYYY HH:mm:ss">{todo.createdAt}</Moment></td>
                     <td>
                         <div className="btn-group " role="group" aria-label="Basic example">
 
