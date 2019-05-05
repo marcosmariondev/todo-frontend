@@ -23,19 +23,19 @@ export default props => {
 
                     <div className="row">
 
-                        <div className="col-9">
+                        <div className="col-8">
                             <input type="text" className="form-control" value={props.description} onKeyUp={keyHandler}
                                    onChange={props.handleChange} placeholder="Digite aqui um termo..."/>
                         </div>
 
-                        <div className="col-3 p-0 m-0 w-100 ">
+                        <div className="col-4 p-0 m-0 w-100 ">
                             <div className="btn-group " role="group" aria-label="Basic example">
                                 <button onClick={props.handleAdd} type="button" className="btn btn-success"><i
-                                    className="fa fa-save"></i></button>
+                                    className="fa fa-save"></i> Salvar</button>
                                 <button type="button" onClick={props.handleSearch} className="btn btn-info"><i
-                                    className="fa fa-search"></i></button>
+                                    className="fa fa-search"></i> Pesquisar</button>
                                 <button type="button" onClick={() => props.refresh()} className="btn btn-danger"><i
-                                    className="fa fa-remove"></i></button>
+                                    className="fa fa-remove"></i> Limpar</button>
                             </div>
 
                         </div>

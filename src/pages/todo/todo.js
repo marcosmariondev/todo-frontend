@@ -26,7 +26,7 @@ export default class todo extends Component {
 
         let value_default = description ? description : ''
 
-        Api.get('/todos')
+        Api.get(`/todos?term=${value_default}`)
             .then(res => {
                 this.setState({ description: value_default,  list: res.data.data });
             })

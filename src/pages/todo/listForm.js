@@ -6,6 +6,9 @@ export default props => {
 
         const list = props.list || []
 
+        if(!list.length)
+            return <tr><td colSpan="2"><span>Não existe todo para essa pesquisa, tente outro termo</span></td></tr>
+
         return list.map(todo => {
 
             return (
