@@ -1,8 +1,5 @@
 import React, {Component} from 'react'
-import Api from '../../main/Api';
-
-import 'bootstrap/dist/css/bootstrap.css';
-import 'font-awesome/css/font-awesome.css'
+import Api from '../../services/Api';
 
 import Header from '../../templates/header'
 

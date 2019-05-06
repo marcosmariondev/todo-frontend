@@ -7,6 +7,7 @@ export default props => (
         <nav className="my-2 my-md-0 mr-md-3">
             <a className="p-2 text-dark" href="/todo">Todo</a>
             <a className="p-2 text-dark" href="/sobre">Sobre</a>
+            <a className="p-2 text-dark" href="/logout">Sair</a>
         </nav>
     </div>
 )
